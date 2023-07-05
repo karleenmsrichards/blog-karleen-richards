@@ -8,11 +8,12 @@ import Login from "./pages/Login";
 export let appContext = createContext(null);
 
 const App = () => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(null);
   const [userIsActive, setUserIsActive] = useState(false);
 
   useEffect(() => {
-    fetch("/api")
+    // fetch("locall/api")
+	fetch("/api")
       .then((res) => {
         if (!res.ok) {
           throw new Error(res.statusText);
@@ -21,10 +22,10 @@ const App = () => {
       })
       .then((body) => {
 		console.log(body);
-        setMessage(body.message);
+        setMessage(body);
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
       });
   }, []);
 
